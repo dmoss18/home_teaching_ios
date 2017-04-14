@@ -7,21 +7,86 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A3D46B11E885FB6008FC178 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3D46B01E885FB6008FC178 /* User.swift */; };
 		1A4417391E7DC4DD007789B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4417381E7DC4DD007789B9 /* AppDelegate.swift */; };
-		1A44173B1E7DC4DD007789B9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A44173A1E7DC4DD007789B9 /* ViewController.swift */; };
+		1A44173B1E7DC4DD007789B9 /* ReportingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A44173A1E7DC4DD007789B9 /* ReportingViewController.swift */; };
 		1A44173E1E7DC4DD007789B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A44173C1E7DC4DD007789B9 /* Main.storyboard */; };
 		1A4417401E7DC4DD007789B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A44173F1E7DC4DD007789B9 /* Assets.xcassets */; };
 		1A4417431E7DC4DD007789B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A4417411E7DC4DD007789B9 /* LaunchScreen.storyboard */; };
+		1A44174B1E7DD8B4007789B9 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 1A44174A1E7DD8B4007789B9 /* Cartfile */; };
+		1A44174D1E7DDC22007789B9 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A44174C1E7DDC22007789B9 /* Alamofire.framework */; };
+		1A44174E1E7DDC22007789B9 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1A44174C1E7DDC22007789B9 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1A91B0781E88AE540069A376 /* HttpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91B0771E88AE540069A376 /* HttpService.swift */; };
+		1AA1D9631E98AC8E00CC9A60 /* QuorumMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA1D9621E98AC8E00CC9A60 /* QuorumMembersViewController.swift */; };
+		1AA8810D1E99778A00735299 /* QuorumMemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA8810C1E99778A00735299 /* QuorumMemberTableViewCell.swift */; };
+		1ACC4CAC1E90AD51006400EB /* AssignmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4CAB1E90AD51006400EB /* AssignmentsViewController.swift */; };
+		1ACC4CAF1E90B34D006400EB /* AssignmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4CAE1E90B34D006400EB /* AssignmentCollectionViewCell.swift */; };
+		1ACC4CB11E90F2CE006400EB /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4CB01E90F2CE006400EB /* Report.swift */; };
+		1AD5576E1E9031A4005036E9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5576D1E9031A4005036E9 /* LoginViewController.swift */; };
+		1AD5BE451EA08B4B007506F1 /* PaginatedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5BE441EA08B4B007506F1 /* PaginatedList.swift */; };
+		1AD5EB4C1E8C1967007E7693 /* UrlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5EB4B1E8C1967007E7693 /* UrlBuilder.swift */; };
+		1AD5EB4E1E8C1CBC007E7693 /* Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5EB4D1E8C1CBC007E7693 /* Assignment.swift */; };
+		1AD5EB501E8C21C9007E7693 /* QuorumMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5EB4F1E8C21C9007E7693 /* QuorumMember.swift */; };
+		1AD5EB521E8C4D7B007E7693 /* Household.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5EB511E8C4D7B007E7693 /* Household.swift */; };
+		1AEBACDE1E8B6C0C005612D9 /* PMKAlamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AEBACDD1E8B6C0C005612D9 /* PMKAlamofire.framework */; };
+		1AEBACDF1E8B6C0C005612D9 /* PMKAlamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1AEBACDD1E8B6C0C005612D9 /* PMKAlamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1AEBACE11E8B6C17005612D9 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AEBACE01E8B6C17005612D9 /* PromiseKit.framework */; };
+		1AEBACE21E8B6C17005612D9 /* PromiseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1AEBACE01E8B6C17005612D9 /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1AEBACE41E8B6C26005612D9 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AEBACE31E8B6C26005612D9 /* ObjectMapper.framework */; };
+		1AEBACE51E8B6C26005612D9 /* ObjectMapper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1AEBACE31E8B6C26005612D9 /* ObjectMapper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1AEBACE71E8B7E75005612D9 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEBACE61E8B7E75005612D9 /* UserStore.swift */; };
+		1AEBACEB1E8B818B005612D9 /* Locksmith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AEBACEA1E8B818B005612D9 /* Locksmith.framework */; };
+		1AEBACEC1E8B818B005612D9 /* Locksmith.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1AEBACEA1E8B818B005612D9 /* Locksmith.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		1A44174F1E7DDC22007789B9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1AEBACEC1E8B818B005612D9 /* Locksmith.framework in Embed Frameworks */,
+				1AEBACE21E8B6C17005612D9 /* PromiseKit.framework in Embed Frameworks */,
+				1AEBACDF1E8B6C0C005612D9 /* PMKAlamofire.framework in Embed Frameworks */,
+				1AEBACE51E8B6C26005612D9 /* ObjectMapper.framework in Embed Frameworks */,
+				1A44174E1E7DDC22007789B9 /* Alamofire.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		1A3D46B01E885FB6008FC178 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1A4417351E7DC4DD007789B9 /* HomeTeaching.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeTeaching.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A4417381E7DC4DD007789B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1A44173A1E7DC4DD007789B9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1A44173A1E7DC4DD007789B9 /* ReportingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportingViewController.swift; sourceTree = "<group>"; };
 		1A44173D1E7DC4DD007789B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1A44173F1E7DC4DD007789B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A4417421E7DC4DD007789B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A4417441E7DC4DD007789B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1A44174A1E7DD8B4007789B9 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		1A44174C1E7DDC22007789B9 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		1A91B0771E88AE540069A376 /* HttpService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpService.swift; sourceTree = "<group>"; };
+		1AA1D9621E98AC8E00CC9A60 /* QuorumMembersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuorumMembersViewController.swift; sourceTree = "<group>"; };
+		1AA8810C1E99778A00735299 /* QuorumMemberTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuorumMemberTableViewCell.swift; sourceTree = "<group>"; };
+		1ACC4CAB1E90AD51006400EB /* AssignmentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentsViewController.swift; sourceTree = "<group>"; };
+		1ACC4CAE1E90B34D006400EB /* AssignmentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentCollectionViewCell.swift; sourceTree = "<group>"; };
+		1ACC4CB01E90F2CE006400EB /* Report.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
+		1AD5576D1E9031A4005036E9 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		1AD5BE441EA08B4B007506F1 /* PaginatedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginatedList.swift; sourceTree = "<group>"; };
+		1AD5BE461EA0A331007506F1 /* NVActivityIndicatorView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NVActivityIndicatorView.framework; path = Carthage/Build/iOS/NVActivityIndicatorView.framework; sourceTree = "<group>"; };
+		1AD5EB4B1E8C1967007E7693 /* UrlBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlBuilder.swift; sourceTree = "<group>"; };
+		1AD5EB4D1E8C1CBC007E7693 /* Assignment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assignment.swift; sourceTree = "<group>"; };
+		1AD5EB4F1E8C21C9007E7693 /* QuorumMember.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuorumMember.swift; sourceTree = "<group>"; };
+		1AD5EB511E8C4D7B007E7693 /* Household.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Household.swift; sourceTree = "<group>"; };
+		1AEBACDD1E8B6C0C005612D9 /* PMKAlamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PMKAlamofire.framework; path = Carthage/Build/iOS/PMKAlamofire.framework; sourceTree = "<group>"; };
+		1AEBACE01E8B6C17005612D9 /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = Carthage/Build/iOS/PromiseKit.framework; sourceTree = "<group>"; };
+		1AEBACE31E8B6C26005612D9 /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
+		1AEBACE61E8B7E75005612D9 /* UserStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
+		1AEBACE91E8B7F66005612D9 /* HomeTeaching.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HomeTeaching.entitlements; sourceTree = "<group>"; };
+		1AEBACEA1E8B818B005612D9 /* Locksmith.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Locksmith.framework; path = Carthage/Build/iOS/Locksmith.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,15 +94,40 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AEBACEB1E8B818B005612D9 /* Locksmith.framework in Frameworks */,
+				1AEBACE11E8B6C17005612D9 /* PromiseKit.framework in Frameworks */,
+				1AEBACDE1E8B6C0C005612D9 /* PMKAlamofire.framework in Frameworks */,
+				1AEBACE41E8B6C26005612D9 /* ObjectMapper.framework in Frameworks */,
+				1A44174D1E7DDC22007789B9 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A3D46AF1E885FA3008FC178 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1A3D46B01E885FB6008FC178 /* User.swift */,
+				1AD5EB4D1E8C1CBC007E7693 /* Assignment.swift */,
+				1AD5EB4F1E8C21C9007E7693 /* QuorumMember.swift */,
+				1AD5EB511E8C4D7B007E7693 /* Household.swift */,
+				1ACC4CB01E90F2CE006400EB /* Report.swift */,
+				1AD5BE441EA08B4B007506F1 /* PaginatedList.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		1A44172C1E7DC4DD007789B9 = {
 			isa = PBXGroup;
 			children = (
+				1AD5BE461EA0A331007506F1 /* NVActivityIndicatorView.framework */,
+				1AEBACEA1E8B818B005612D9 /* Locksmith.framework */,
+				1AEBACE31E8B6C26005612D9 /* ObjectMapper.framework */,
+				1AEBACE01E8B6C17005612D9 /* PromiseKit.framework */,
+				1AEBACDD1E8B6C0C005612D9 /* PMKAlamofire.framework */,
+				1A44174C1E7DDC22007789B9 /* Alamofire.framework */,
+				1A44174A1E7DD8B4007789B9 /* Cartfile */,
 				1A4417371E7DC4DD007789B9 /* HomeTeaching */,
 				1A4417361E7DC4DD007789B9 /* Products */,
 			);
@@ -54,14 +144,56 @@
 		1A4417371E7DC4DD007789B9 /* HomeTeaching */ = {
 			isa = PBXGroup;
 			children = (
+				1ACC4CAD1E90B329006400EB /* Views */,
+				1AD5576C1E903164005036E9 /* ViewControllers */,
+				1AD5EB4A1E8C1936007E7693 /* Util */,
+				1AEBACE91E8B7F66005612D9 /* HomeTeaching.entitlements */,
+				1A91B0761E88ADE80069A376 /* Services */,
+				1A3D46AF1E885FA3008FC178 /* Models */,
 				1A4417381E7DC4DD007789B9 /* AppDelegate.swift */,
-				1A44173A1E7DC4DD007789B9 /* ViewController.swift */,
 				1A44173C1E7DC4DD007789B9 /* Main.storyboard */,
 				1A44173F1E7DC4DD007789B9 /* Assets.xcassets */,
 				1A4417411E7DC4DD007789B9 /* LaunchScreen.storyboard */,
 				1A4417441E7DC4DD007789B9 /* Info.plist */,
 			);
 			path = HomeTeaching;
+			sourceTree = "<group>";
+		};
+		1A91B0761E88ADE80069A376 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				1A91B0771E88AE540069A376 /* HttpService.swift */,
+				1AEBACE61E8B7E75005612D9 /* UserStore.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		1ACC4CAD1E90B329006400EB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1ACC4CAE1E90B34D006400EB /* AssignmentCollectionViewCell.swift */,
+				1AA8810C1E99778A00735299 /* QuorumMemberTableViewCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		1AD5576C1E903164005036E9 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				1A44173A1E7DC4DD007789B9 /* ReportingViewController.swift */,
+				1AD5576D1E9031A4005036E9 /* LoginViewController.swift */,
+				1ACC4CAB1E90AD51006400EB /* AssignmentsViewController.swift */,
+				1AA1D9621E98AC8E00CC9A60 /* QuorumMembersViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		1AD5EB4A1E8C1936007E7693 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				1AD5EB4B1E8C1967007E7693 /* UrlBuilder.swift */,
+			);
+			name = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,6 +206,7 @@
 				1A4417311E7DC4DD007789B9 /* Sources */,
 				1A4417321E7DC4DD007789B9 /* Frameworks */,
 				1A4417331E7DC4DD007789B9 /* Resources */,
+				1A44174F1E7DDC22007789B9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -98,6 +231,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 9KVTB8T48U;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -126,6 +264,7 @@
 			files = (
 				1A4417431E7DC4DD007789B9 /* LaunchScreen.storyboard in Resources */,
 				1A4417401E7DC4DD007789B9 /* Assets.xcassets in Resources */,
+				1A44174B1E7DD8B4007789B9 /* Cartfile in Resources */,
 				1A44173E1E7DC4DD007789B9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,8 +276,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A44173B1E7DC4DD007789B9 /* ViewController.swift in Sources */,
+				1AA8810D1E99778A00735299 /* QuorumMemberTableViewCell.swift in Sources */,
+				1ACC4CAC1E90AD51006400EB /* AssignmentsViewController.swift in Sources */,
+				1A44173B1E7DC4DD007789B9 /* ReportingViewController.swift in Sources */,
+				1AD5EB4E1E8C1CBC007E7693 /* Assignment.swift in Sources */,
+				1AA1D9631E98AC8E00CC9A60 /* QuorumMembersViewController.swift in Sources */,
+				1AEBACE71E8B7E75005612D9 /* UserStore.swift in Sources */,
+				1AD5EB521E8C4D7B007E7693 /* Household.swift in Sources */,
+				1AD5BE451EA08B4B007506F1 /* PaginatedList.swift in Sources */,
+				1ACC4CB11E90F2CE006400EB /* Report.swift in Sources */,
+				1ACC4CAF1E90B34D006400EB /* AssignmentCollectionViewCell.swift in Sources */,
+				1A91B0781E88AE540069A376 /* HttpService.swift in Sources */,
+				1AD5EB4C1E8C1967007E7693 /* UrlBuilder.swift in Sources */,
 				1A4417391E7DC4DD007789B9 /* AppDelegate.swift in Sources */,
+				1AD5EB501E8C21C9007E7693 /* QuorumMember.swift in Sources */,
+				1AD5576E1E9031A4005036E9 /* LoginViewController.swift in Sources */,
+				1A3D46B11E885FB6008FC178 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,7 +414,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = HomeTeaching/HomeTeaching.entitlements;
 				DEVELOPMENT_TEAM = 9KVTB8T48U;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = HomeTeaching/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.moss.HomeTeaching;
@@ -274,7 +432,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = HomeTeaching/HomeTeaching.entitlements;
 				DEVELOPMENT_TEAM = 9KVTB8T48U;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = HomeTeaching/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.moss.HomeTeaching;
@@ -302,6 +465,7 @@
 				1A4417491E7DC4DD007789B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
