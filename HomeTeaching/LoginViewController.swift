@@ -13,7 +13,9 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var passwordConfirmation: UITextField!
     @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var signUpButton: UIButton!
     
     let httpService : HttpService = HttpService.sharedInstance
     let userStore : UserStore = UserStore.sharedInstance
@@ -45,7 +47,19 @@ class LoginViewController: UIViewController {
         return true
     }
     
-    @IBAction func login() {
+    func isShowingLoginForm() -> Bool {
+        return self.passwordConfirmation.isHidden
+    }
+    
+    @IBAction func submit() {
+        if isShowingLoginForm() {
+            login()
+        } else {
+            signUp()
+        }
+    }
+    
+    func login() {
         guard let emailText = self.email.text else {
             presentAlert("Please enter an email address")
             return
@@ -74,6 +88,56 @@ class LoginViewController: UIViewController {
             wSelf.submitButton.isEnabled = true
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
         }
+    }
+    
+    func signUp() {
+        guard let emailText = self.email.text else {
+            presentAlert("Please enter an email address")
+            return
+        }
+        guard let passwordText = self.password.text else {
+            presentAlert("Please enter a password")
+            return
+        }
+        
+        guard let passwordConfirmationText = self.passwordConfirmation.text else {
+            presentAlert("Please enter a password confirmation")
+            return
+        }
+        
+        if passwordText != passwordConfirmationText {
+            presentAlert("Password and password confirmation must match")
+            return
+        }
+        
+        submitButton.isEnabled = false
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        firstly {
+            httpService.signUp(email: emailText, password: passwordText, passwordConfirmation: passwordConfirmationText)
+        }.then { [weak self] user -> Void in
+            guard let wSelf = self else { return }
+            if wSelf.userStore.isLinkedToQuorum() {
+                wSelf.navigationController?.popToRootViewController(animated: true)
+            } else {
+                wSelf.performSegue(withIdentifier: "ShowQuorumMembersViewController", sender: wSelf)
+            }
+        }.catch { [weak self] error in
+            guard let wSelf = self else { return }
+            wSelf.presentAlert("Invalid username or password")
+        }.always { [weak self] in
+            guard let wSelf = self else { return }
+            wSelf.submitButton.isEnabled = true
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        }
+    }
+    
+    @IBAction func toggleRegistrationForm() {
+        let willShowRegistration = isShowingLoginForm()
+        self.passwordConfirmation.isHidden = !willShowRegistration
+        let signUpTitle = willShowRegistration ? "I already have a login" : "I don't have a login"
+        self.signUpButton.setTitle(signUpTitle, for: .normal)
+        let title = willShowRegistration ? "Register" : "Login"
+        self.submitButton.setTitle(title, for: .normal)
     }
 
     func presentAlert(_ message: String) {

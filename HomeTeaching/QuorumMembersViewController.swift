@@ -9,16 +9,18 @@
 import UIKit
 import PromiseKit
 
-class QuorumMembersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class QuorumMembersViewController: BaseMenuViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     var quorumMembersMeta : PaginatedList<QuorumMember> = PaginatedList<QuorumMember>() {
         didSet {
             if self.quorumMembersMeta.data == nil {
-                self.quorumMembers = []
+                return
             }
-            self.quorumMembers = self.quorumMembersMeta.data
+            self.allQuorumMembers += self.quorumMembersMeta.data!
+            self.quorumMembers = self.allQuorumMembers
         }
     }
-    var quorumMembers : [QuorumMember]? = []
+    var quorumMembers : [QuorumMember] = []
+    var allQuorumMembers : [QuorumMember] = []
     var indexTitles : [String:Int]?
     let httpService : HttpService = HttpService.sharedInstance
     let userStore : UserStore = UserStore.sharedInstance
@@ -38,31 +40,40 @@ class QuorumMembersViewController: UIViewController, UITableViewDataSource, UITa
         super.viewWillAppear(animated)
         
         // Hide the navigation bar on the this view controller
-        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        
+        // Hide the navigation bar on the this view controller
+        self.navigationItem.setHidesBackButton(true, animated: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         // Show the navigation bar on other view controllers
-        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        self.navigationItem.setHidesBackButton(false, animated: false)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.quorumMembers == nil {
-            return 0
-        }
-        return self.quorumMembers!.count
+        return self.quorumMembers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : QuorumMemberTableViewCell = tableView.dequeueReusableCell(withIdentifier: "QuorumMemberCell") as! QuorumMemberTableViewCell
-        cell.quorumMember = self.quorumMembers![indexPath.row]
+        cell.quorumMember = self.quorumMembers[indexPath.row]
         return cell
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if isDisplayingSearchResults() {
+            return
+        }
+        if self.quorumMembers.count - indexPath.row == 5 && self.quorumMembersMeta.hasNextPage() {
+            fetchQuorumMembers()
+        }
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let quorumMember : QuorumMember = self.quorumMembers![indexPath.row]
+        let quorumMember : QuorumMember = self.quorumMembers[indexPath.row]
         let params : [String:String] = ["user_id": String(userStore.currentUser!.id!)]
         firstly {
             httpService.updateQuorumMember(member: quorumMember, parameters: params)
@@ -73,13 +84,14 @@ class QuorumMembersViewController: UIViewController, UITableViewDataSource, UITa
             wSelf.navigationController?.popToRootViewController(animated: true)
         }.catch { [weak self] error in
             guard let wSelf = self else { return }
-            wSelf.presentAlert("Something went wrong while trying to update quorum member")
+            wSelf.presentAlert((error as! HTError).message)
         }
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
-            fetchQuorumMembers()
+            self.quorumMembers = allQuorumMembers
+            self.tableView.reloadData()
             return
         }
 
@@ -95,9 +107,9 @@ class QuorumMembersViewController: UIViewController, UITableViewDataSource, UITa
         }
     }
     
-    func fetchQuorumMembers() {
+    func fetchQuorumMembers(_ page : Int? = nil) {
         firstly {
-            httpService.getQuorumMembers(quorumId: 1, page: self.quorumMembersMeta.nextPage())
+            httpService.getQuorumMembers(quorumId: 1, page: (page ?? quorumMembersMeta.nextPage()))
         }.then { [weak self] members -> Void in
             guard let wSelf = self else { return }
             wSelf.quorumMembersMeta = members
@@ -106,6 +118,10 @@ class QuorumMembersViewController: UIViewController, UITableViewDataSource, UITa
             guard let wSelf = self else { return }
             wSelf.presentAlert("Something went wrong trying to retrieve quorum members")
         }
+    }
+    
+    func isDisplayingSearchResults() -> Bool {
+        return self.quorumMembers as AnyObject !== self.allQuorumMembers as AnyObject
     }
     
     func presentAlert(_ message: String) {

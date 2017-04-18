@@ -48,7 +48,9 @@ class ReportingViewController: UIViewController {
             self.httpService.createReport(report)
         }.then { [weak self] _ -> Void in
             guard let wSelf = self else { return }
-            wSelf.navigationController?.popToRootViewController(animated: true)
+            wSelf.presentAlert("Report successfully submitted. Thank you.", handler: { _ in
+                wSelf.navigationController?.popViewController(animated: true)
+            })
         }
     }
     
@@ -57,9 +59,9 @@ class ReportingViewController: UIViewController {
         self.householdName.text = household.name
     }
     
-    func presentAlert(_ message: String) {
+    func presentAlert(_ message: String, handler: ((UIAlertAction) -> Void)? = nil) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: handler)
         alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)
     }

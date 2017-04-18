@@ -43,6 +43,24 @@ class HttpService {
         }
     }
     
+    func signUp(email: String, password: String, passwordConfirmation: String) -> Promise<User> {
+        let endpoint: String = UrlBuilder(baseUrl).resource("users").build()
+        let parameters = [
+            "email": email,
+            "password": password,
+            "password_confirmation": passwordConfirmation
+        ]
+        
+        return firstly { _ in
+            sendRequest(endpoint, method: .post, parameters: parameters).responseString()
+            }.then { jsonString -> User in
+                let user = User(JSONString: jsonString)!
+                self.userStore.write(user, user.quorumMember)
+                self.updateAuthHeader(token: user.authenticationToken)
+                return user
+        }
+    }
+    
     func getAssignments(quorumMember: QuorumMember) -> Promise<[Assignment]> {
         let endpoint: String = UrlBuilder(baseUrl)
             .resource("quorums", id: quorumMember.quorumId)
@@ -113,6 +131,7 @@ class HttpService {
     
     func updateQuorumMember(member: QuorumMember, parameters : Parameters) -> Promise<QuorumMember> {
         let endpoint: String = UrlBuilder(baseUrl)
+            .resource("quorums", id: member.quorumId)
             .resource("quorum_members", id: member.id)
             .build()
         
@@ -137,5 +156,48 @@ class HttpService {
     
     private func updateAuthHeader(token: String?) {
         headers["Authorization"] = "Bearer \(token)"
+    }
+}
+
+struct HTError : Error {
+    var message : String
+//    var code: Int
+}
+
+extension Alamofire.DataRequest {
+    /// Adds a handler to be called once the request has finished.
+    public func responseString() -> Promise<String> {
+        return Promise { fulfill, reject in
+            responseString(queue: nil) { response in
+                switch response.result {
+                case .success(let value):
+                    fulfill(value)
+                case .failure:
+                    reject(self.parseError(data: response.data))
+                }
+            }
+        }
+    }
+    
+    /// Adds a handler to be called once the request has finished.
+    public func responseJSON(options: JSONSerialization.ReadingOptions = .allowFragments) -> Promise<Any> {
+        return Promise { fulfill, reject in
+            responseJSON(queue: nil, options: options, completionHandler: { response in
+                switch response.result {
+                case .success(let value):
+                    fulfill(value)
+                case .failure:
+                    reject(self.parseError(data: response.data))
+                }
+            })
+        }
+    }
+    
+    fileprivate func parseError(data: Data?) -> HTError {
+        let json = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String: String]
+        if json == nil {
+            return HTError(message: "An unknown error has occurred")
+        }
+        return HTError(message: json!["message"]!)
     }
 }

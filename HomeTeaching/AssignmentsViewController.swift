@@ -9,7 +9,7 @@
 import UIKit
 import PromiseKit
 
-class AssignmentsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class AssignmentsViewController: BaseMenuViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet var tableView : UITableView!
     let httpService : HttpService = HttpService.sharedInstance
@@ -18,18 +18,27 @@ class AssignmentsViewController: UIViewController, UITableViewDataSource, UITabl
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        if userStore.isLoggedIn() && userStore.isLinkedToQuorum() {
-            fetchAssignments()
-        }
+        NotificationCenter.default.addObserver(self, selector: #selector(AssignmentsViewController.presentLogin), name: NSNotification.Name(rawValue: "logoutEvent"), object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if !userStore.isLoggedIn() {
-            self.performSegue(withIdentifier: "ShowLoginViewController", sender: self)
+            presentLogin()
         } else if !userStore.isLinkedToQuorum() {
             self.performSegue(withIdentifier: "ShowQuorumMembersViewController", sender: self)
+        } else {
+            fetchAssignments()
         }
     }
     
@@ -66,8 +75,18 @@ class AssignmentsViewController: UIViewController, UITableViewDataSource, UITabl
         }
     }
     
-    @IBAction func logout() {
-        userStore.delete()
+    func presentLogin() {
         self.performSegue(withIdentifier: "ShowLoginViewController", sender: self)
+    }
+}
+
+extension AssignmentsViewController : UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if toVC is LoginViewController {
+            return SlideUpAnimator()
+        } else if fromVC is LoginViewController && toVC is AssignmentsViewController {
+            return SlideDownAnimator()
+        }
+        return nil
     }
 }

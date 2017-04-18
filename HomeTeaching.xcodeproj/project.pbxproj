@@ -19,6 +19,10 @@
 		1A91B0781E88AE540069A376 /* HttpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91B0771E88AE540069A376 /* HttpService.swift */; };
 		1AA1D9631E98AC8E00CC9A60 /* QuorumMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA1D9621E98AC8E00CC9A60 /* QuorumMembersViewController.swift */; };
 		1AA8810D1E99778A00735299 /* QuorumMemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA8810C1E99778A00735299 /* QuorumMemberTableViewCell.swift */; };
+		1AB7A9F01EA5C68C0054675B /* SlideUpAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB7A9EF1EA5C68C0054675B /* SlideUpAnimator.swift */; };
+		1AB7A9F21EA5C9D30054675B /* SlideDownAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB7A9F11EA5C9D30054675B /* SlideDownAnimator.swift */; };
+		1ABC9A881EA3367700148D3C /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABC9A871EA3367700148D3C /* RootViewController.swift */; };
+		1ABC9A8A1EA33E2600148D3C /* BaseMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABC9A891EA33E2600148D3C /* BaseMenuViewController.swift */; };
 		1ACC4CAC1E90AD51006400EB /* AssignmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4CAB1E90AD51006400EB /* AssignmentsViewController.swift */; };
 		1ACC4CAF1E90B34D006400EB /* AssignmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4CAE1E90B34D006400EB /* AssignmentCollectionViewCell.swift */; };
 		1ACC4CB11E90F2CE006400EB /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4CB01E90F2CE006400EB /* Report.swift */; };
@@ -71,6 +75,10 @@
 		1A91B0771E88AE540069A376 /* HttpService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpService.swift; sourceTree = "<group>"; };
 		1AA1D9621E98AC8E00CC9A60 /* QuorumMembersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuorumMembersViewController.swift; sourceTree = "<group>"; };
 		1AA8810C1E99778A00735299 /* QuorumMemberTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuorumMemberTableViewCell.swift; sourceTree = "<group>"; };
+		1AB7A9EF1EA5C68C0054675B /* SlideUpAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideUpAnimator.swift; sourceTree = "<group>"; };
+		1AB7A9F11EA5C9D30054675B /* SlideDownAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideDownAnimator.swift; sourceTree = "<group>"; };
+		1ABC9A871EA3367700148D3C /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		1ABC9A891EA33E2600148D3C /* BaseMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseMenuViewController.swift; sourceTree = "<group>"; };
 		1ACC4CAB1E90AD51006400EB /* AssignmentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentsViewController.swift; sourceTree = "<group>"; };
 		1ACC4CAE1E90B34D006400EB /* AssignmentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentCollectionViewCell.swift; sourceTree = "<group>"; };
 		1ACC4CB01E90F2CE006400EB /* Report.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
@@ -168,6 +176,15 @@
 			name = Services;
 			sourceTree = "<group>";
 		};
+		1AB7A9EE1EA5C67C0054675B /* Animators */ = {
+			isa = PBXGroup;
+			children = (
+				1AB7A9EF1EA5C68C0054675B /* SlideUpAnimator.swift */,
+				1AB7A9F11EA5C9D30054675B /* SlideDownAnimator.swift */,
+			);
+			name = Animators;
+			sourceTree = "<group>";
+		};
 		1ACC4CAD1E90B329006400EB /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +201,8 @@
 				1AD5576D1E9031A4005036E9 /* LoginViewController.swift */,
 				1ACC4CAB1E90AD51006400EB /* AssignmentsViewController.swift */,
 				1AA1D9621E98AC8E00CC9A60 /* QuorumMembersViewController.swift */,
+				1ABC9A871EA3367700148D3C /* RootViewController.swift */,
+				1ABC9A891EA33E2600148D3C /* BaseMenuViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -191,6 +210,7 @@
 		1AD5EB4A1E8C1936007E7693 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				1AB7A9EE1EA5C67C0054675B /* Animators */,
 				1AD5EB4B1E8C1967007E7693 /* UrlBuilder.swift */,
 			);
 			name = Util;
@@ -277,14 +297,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				1AA8810D1E99778A00735299 /* QuorumMemberTableViewCell.swift in Sources */,
+				1ABC9A881EA3367700148D3C /* RootViewController.swift in Sources */,
 				1ACC4CAC1E90AD51006400EB /* AssignmentsViewController.swift in Sources */,
 				1A44173B1E7DC4DD007789B9 /* ReportingViewController.swift in Sources */,
 				1AD5EB4E1E8C1CBC007E7693 /* Assignment.swift in Sources */,
 				1AA1D9631E98AC8E00CC9A60 /* QuorumMembersViewController.swift in Sources */,
 				1AEBACE71E8B7E75005612D9 /* UserStore.swift in Sources */,
 				1AD5EB521E8C4D7B007E7693 /* Household.swift in Sources */,
+				1AB7A9F21EA5C9D30054675B /* SlideDownAnimator.swift in Sources */,
 				1AD5BE451EA08B4B007506F1 /* PaginatedList.swift in Sources */,
 				1ACC4CB11E90F2CE006400EB /* Report.swift in Sources */,
+				1ABC9A8A1EA33E2600148D3C /* BaseMenuViewController.swift in Sources */,
+				1AB7A9F01EA5C68C0054675B /* SlideUpAnimator.swift in Sources */,
 				1ACC4CAF1E90B34D006400EB /* AssignmentCollectionViewCell.swift in Sources */,
 				1A91B0781E88AE540069A376 /* HttpService.swift in Sources */,
 				1AD5EB4C1E8C1967007E7693 /* UrlBuilder.swift in Sources */,

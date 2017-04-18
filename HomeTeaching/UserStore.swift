@@ -55,6 +55,8 @@ class UserStore {
     }
     
     public func delete() {
+        self.currentUser = nil
+        self.currentQuorumMember = nil
         do {
             try Locksmith.deleteDataForUserAccount(userAccount: UserStore.keychainUser, inService: UserStore.keychainUser)
             try Locksmith.deleteDataForUserAccount(userAccount: UserStore.keychainQuorumMember, inService: UserStore.keychainQuorumMember)
