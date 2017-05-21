@@ -8,12 +8,12 @@
 
 import UIKit
 import PromiseKit
-import NVActivityIndicatorView
 
 class ReportingViewController: UIViewController {
     
     let reportStatuses : [String] = ["Contacted", "Tried to contact", "No contact"]
     
+    @IBOutlet var scrollView : UIScrollView!
     @IBOutlet var householdName : UILabel!
     @IBOutlet var segmentedControl : UISegmentedControl!
     @IBOutlet var textView : UITextView!
@@ -32,13 +32,25 @@ class ReportingViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(ReportingViewController.keyboardDidShow(_:)), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(ReportingViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    override open func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self)
+        
+        resetScrollViewInsets()
     }
 
     @IBAction func submit() {
         // TODO
         let status = reportStatuses[segmentedControl.selectedSegmentIndex]
         let message = textView.text
-        if (message ?? "").isEmpty {
+        if (message ?? "").isEmpty && status != "No contact" {
             presentAlert("Please enter some info about how this family is doing")
             return
         }
@@ -64,6 +76,26 @@ class ReportingViewController: UIViewController {
         let okAction = UIAlertAction(title: "OK", style: .default, handler: handler)
         alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func keyboardDidShow(_ notification: Notification) {
+        let info = (notification as NSNotification).userInfo!
+        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue.size
+        let insets = UIEdgeInsetsMake(0, 0, keyboardSize.height, 0)
+        scrollView.contentInset = insets
+        scrollView.scrollIndicatorInsets = insets
+        
+        self.scrollView.scrollRectToVisible(self.textView.frame, animated: true)
+    }
+    
+    func keyboardWillHide(_ notification: Notification) {
+        resetScrollViewInsets()
+    }
+    
+    func resetScrollViewInsets() {
+        let insets = UIEdgeInsets.zero
+        self.scrollView.contentInset = insets
+        self.scrollView.scrollIndicatorInsets = insets
     }
 }
 

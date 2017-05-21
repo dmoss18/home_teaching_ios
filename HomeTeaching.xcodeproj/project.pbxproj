@@ -84,7 +84,6 @@
 		1ACC4CB01E90F2CE006400EB /* Report.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		1AD5576D1E9031A4005036E9 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1AD5BE441EA08B4B007506F1 /* PaginatedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginatedList.swift; sourceTree = "<group>"; };
-		1AD5BE461EA0A331007506F1 /* NVActivityIndicatorView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NVActivityIndicatorView.framework; path = Carthage/Build/iOS/NVActivityIndicatorView.framework; sourceTree = "<group>"; };
 		1AD5EB4B1E8C1967007E7693 /* UrlBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlBuilder.swift; sourceTree = "<group>"; };
 		1AD5EB4D1E8C1CBC007E7693 /* Assignment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assignment.swift; sourceTree = "<group>"; };
 		1AD5EB4F1E8C21C9007E7693 /* QuorumMember.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuorumMember.swift; sourceTree = "<group>"; };
@@ -129,7 +128,6 @@
 		1A44172C1E7DC4DD007789B9 = {
 			isa = PBXGroup;
 			children = (
-				1AD5BE461EA0A331007506F1 /* NVActivityIndicatorView.framework */,
 				1AEBACEA1E8B818B005612D9 /* Locksmith.framework */,
 				1AEBACE31E8B6C26005612D9 /* ObjectMapper.framework */,
 				1AEBACE01E8B6C17005612D9 /* PromiseKit.framework */,
@@ -227,6 +225,7 @@
 				1A4417321E7DC4DD007789B9 /* Frameworks */,
 				1A4417331E7DC4DD007789B9 /* Resources */,
 				1A44174F1E7DDC22007789B9 /* Embed Frameworks */,
+				1ABF0C721EA7248A000F7B15 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -290,6 +289,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1ABF0C721EA7248A000F7B15 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/PMKAlamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/PromiseKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ObjectMapper.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Locksmith.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1A4417311E7DC4DD007789B9 /* Sources */ = {
