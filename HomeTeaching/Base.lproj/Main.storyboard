@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1421" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IHt-UK-pV0">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IHt-UK-pV0">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -28,16 +28,29 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XeD-2L-g5I">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="583"/>
+                                        <subviews>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Dne-HW-yoX">
+                                                <rect key="frame" x="8" y="46" width="359" height="29"/>
+                                                <segments>
+                                                    <segment title="This Month"/>
+                                                    <segment title="Last Month"/>
+                                                </segments>
+                                            </segmentedControl>
+                                        </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="Dne-HW-yoX" firstAttribute="leading" secondItem="XeD-2L-g5I" secondAttribute="leadingMargin" id="b4j-rM-3gT"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="Dne-HW-yoX" secondAttribute="trailing" id="dO8-YG-mMW"/>
+                                        </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How is this family doing?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SX8-PC-fTS">
-                                        <rect key="frame" x="8" y="90" width="189" height="21"/>
+                                        <rect key="frame" x="8" y="134" width="189" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <segmentedControl opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="HQp-a8-RTf">
-                                        <rect key="frame" x="8" y="46" width="359" height="29"/>
+                                        <rect key="frame" x="8" y="90" width="359" height="29"/>
                                         <segments>
                                             <segment title="Contacted"/>
                                             <segment title="Tried to contact"/>
@@ -51,7 +64,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="THE-f4-kTi">
-                                        <rect key="frame" x="8" y="119" width="359" height="200"/>
+                                        <rect key="frame" x="8" y="163" width="359" height="200"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="Way-zu-iTM"/>
@@ -60,7 +73,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8uL-eb-M92">
-                                        <rect key="frame" x="87.5" y="327" width="200" height="30"/>
+                                        <rect key="frame" x="87.5" y="371" width="200" height="30"/>
                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="1QD-ir-ODO"/>
@@ -76,12 +89,14 @@
                                 <constraints>
                                     <constraint firstItem="Sww-hw-XBu" firstAttribute="leading" secondItem="Huc-KK-ZQG" secondAttribute="leadingMargin" id="2KZ-Gk-dnL"/>
                                     <constraint firstItem="HQp-a8-RTf" firstAttribute="leading" secondItem="Huc-KK-ZQG" secondAttribute="leadingMargin" id="2li-28-ie0"/>
+                                    <constraint firstItem="SX8-PC-fTS" firstAttribute="top" secondItem="HQp-a8-RTf" secondAttribute="bottom" constant="16" id="8Zb-fn-Hb3"/>
                                     <constraint firstItem="XeD-2L-g5I" firstAttribute="top" secondItem="Huc-KK-ZQG" secondAttribute="top" id="AH6-Ki-QMZ"/>
                                     <constraint firstItem="XeD-2L-g5I" firstAttribute="centerX" secondItem="Huc-KK-ZQG" secondAttribute="centerX" id="BT3-G2-0am"/>
+                                    <constraint firstItem="HQp-a8-RTf" firstAttribute="top" secondItem="Dne-HW-yoX" secondAttribute="bottom" constant="16" id="DZI-Uo-2Y5"/>
                                     <constraint firstItem="SX8-PC-fTS" firstAttribute="leading" secondItem="Huc-KK-ZQG" secondAttribute="leadingMargin" id="Frs-7r-wjW"/>
                                     <constraint firstAttribute="bottom" secondItem="XeD-2L-g5I" secondAttribute="bottom" id="HQX-Id-IYf"/>
                                     <constraint firstItem="Sww-hw-XBu" firstAttribute="top" secondItem="Huc-KK-ZQG" secondAttribute="top" constant="9" id="LH1-iT-hu4"/>
-                                    <constraint firstItem="SX8-PC-fTS" firstAttribute="top" secondItem="HQp-a8-RTf" secondAttribute="bottom" constant="16" id="LN5-OV-YSr"/>
+                                    <constraint firstItem="Dne-HW-yoX" firstAttribute="top" secondItem="Sww-hw-XBu" secondAttribute="bottom" constant="16" id="RJN-Qw-OTJ"/>
                                     <constraint firstItem="8uL-eb-M92" firstAttribute="top" secondItem="THE-f4-kTi" secondAttribute="bottom" constant="8" id="RSA-TX-NtD"/>
                                     <constraint firstItem="THE-f4-kTi" firstAttribute="leading" secondItem="Huc-KK-ZQG" secondAttribute="leadingMargin" id="WoK-TZ-gTg"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="THE-f4-kTi" secondAttribute="trailing" id="Yew-1B-fRS"/>
@@ -90,7 +105,6 @@
                                     <constraint firstItem="XeD-2L-g5I" firstAttribute="leading" secondItem="Huc-KK-ZQG" secondAttribute="leading" id="jWG-3R-FTC"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="HQp-a8-RTf" secondAttribute="trailing" id="sys-PP-JmV"/>
                                     <constraint firstItem="XeD-2L-g5I" firstAttribute="centerY" secondItem="Huc-KK-ZQG" secondAttribute="centerY" id="wiJ-hX-ae5"/>
-                                    <constraint firstItem="HQp-a8-RTf" firstAttribute="top" secondItem="Sww-hw-XBu" secondAttribute="bottom" constant="16" id="zNA-8m-WKR"/>
                                     <constraint firstItem="THE-f4-kTi" firstAttribute="top" secondItem="SX8-PC-fTS" secondAttribute="bottom" constant="8" id="zQr-Cc-HJI"/>
                                 </constraints>
                             </scrollView>
@@ -105,6 +119,7 @@
                     </view>
                     <connections>
                         <outlet property="householdName" destination="Sww-hw-XBu" id="75N-N7-H7D"/>
+                        <outlet property="monthPicker" destination="Dne-HW-yoX" id="BPk-cr-7xs"/>
                         <outlet property="scrollView" destination="Huc-KK-ZQG" id="bdr-VA-fgd"/>
                         <outlet property="segmentedControl" destination="HQp-a8-RTf" id="uUP-fy-g8G"/>
                         <outlet property="textView" destination="THE-f4-kTi" id="s7d-sj-kCX"/>

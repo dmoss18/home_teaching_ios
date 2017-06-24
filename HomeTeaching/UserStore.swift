@@ -47,8 +47,8 @@ class UserStore {
     
     public func write() {
         do {
-            try currentUser?.createInSecureStore()
-            try currentQuorumMember?.createInSecureStore()
+            try currentUser?.updateInSecureStore()
+            try currentQuorumMember?.updateInSecureStore()
         } catch {
             print(error)
         }

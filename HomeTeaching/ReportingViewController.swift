@@ -17,6 +17,7 @@ class ReportingViewController: UIViewController {
     @IBOutlet var householdName : UILabel!
     @IBOutlet var segmentedControl : UISegmentedControl!
     @IBOutlet var textView : UITextView!
+    @IBOutlet var monthPicker : UISegmentedControl!
     
     let httpService = HttpService.sharedInstance
     let userStore = UserStore.sharedInstance
@@ -55,7 +56,12 @@ class ReportingViewController: UIViewController {
             return
         }
         
-        let report = Report(status: status, message: message, assignment: assignment!)
+        var period = Date()
+        if monthPicker.selectedSegmentIndex == 1 {
+            period = Calendar.current.date(byAdding: .month, value: -1, to: period)!
+        }
+        
+        let report = Report(status: status, message: message, assignment: assignment!, period: period)
         firstly {
             self.httpService.createReport(report)
         }.then { [weak self] _ -> Void in

@@ -15,12 +15,14 @@ class Report : Mappable {
     var message : String?
     var status: String?
     var householdName: String?
+    var period: Date?
     
-    required init(status: String?, message: String?, assignment: Assignment) {
+    required init(status: String?, message: String?, assignment: Assignment, period: Date?) {
         self.status = status
         self.message = message
         self.assignmentId = assignment.id
         self.householdName = assignment.household?.name
+        self.period = period
     }
 
     required init?(map: Map) {}
@@ -31,5 +33,6 @@ class Report : Mappable {
         message         <- map["message"]
         status          <- map["status"]
         householdName   <- map["household_name"]
+        period          <- map["period"]
     }
 }

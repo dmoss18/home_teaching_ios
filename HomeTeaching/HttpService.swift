@@ -19,7 +19,7 @@ class HttpService {
 //    private var baseUrl: String = "http://localhost:3000"
     private var headers: [String: String?] = [
         "Content-Type": "application/json",
-        "Authorization": nil
+        "Authorization": UserStore.sharedInstance.authenticationToken
     ]
     
     private init() {
@@ -84,7 +84,8 @@ class HttpService {
             "assignment_id": String(report.assignmentId!),
             "status": report.status,
             "message": report.message,
-            "household_name": report.householdName
+            "household_name": report.householdName,
+            "period": String(describing: report.period)
         ]
 
         return firstly { _ in
@@ -150,7 +151,7 @@ class HttpService {
     }
     
     private func parseArray<T: Mappable>(json: Any) -> [T] {
-        return Mapper<T>().mapArray(JSONArray: json as! [[String : Any]])!
+        return Mapper<T>().mapArray(JSONArray: json as! [[String : Any]])
     }
     
     
