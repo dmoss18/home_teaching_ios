@@ -15,8 +15,8 @@ import ObjectMapper
 class HttpService {
     open static let sharedInstance = HttpService()
     private let userStore: UserStore = UserStore.sharedInstance
-    private var baseUrl: String = "https://protected-sierra-11823.herokuapp.com"
-//    private var baseUrl: String = "http://localhost:3000"
+//    private var baseUrl: String = "https://protected-sierra-11823.herokuapp.com"
+    private var baseUrl: String = "http://localhost:3000"
     private var headers: [String: String?] = [
         "Content-Type": "application/json",
         "Authorization": UserStore.sharedInstance.authenticationToken
@@ -92,6 +92,19 @@ class HttpService {
             sendRequest(endpoint, method: .post, parameters: parameters).responseString()
         }.then { json -> Report in
             return Report(JSONString: json)!
+        }
+    }
+    
+    func getQuorums(wardId: Int = 1) -> Promise<[Quorum]> {
+        let endpoint: String = UrlBuilder(baseUrl)
+            .resource("wards", id: wardId)
+            .resource("quorums")
+            .build()
+
+        return firstly { _ in
+            sendRequest(endpoint).responseJSON()
+        }.then { json -> [Quorum] in
+            return self.parseArray(json: json)
         }
     }
     

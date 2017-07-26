@@ -16,6 +16,8 @@
 		1A44174B1E7DD8B4007789B9 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 1A44174A1E7DD8B4007789B9 /* Cartfile */; };
 		1A44174D1E7DDC22007789B9 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A44174C1E7DDC22007789B9 /* Alamofire.framework */; };
 		1A44174E1E7DDC22007789B9 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1A44174C1E7DDC22007789B9 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1A7A2E221F284FED0079307D /* Quorum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7A2E211F284FED0079307D /* Quorum.swift */; };
+		1A7A2E241F2862BC0079307D /* PickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7A2E231F2862BC0079307D /* PickerButton.swift */; };
 		1A91B0781E88AE540069A376 /* HttpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91B0771E88AE540069A376 /* HttpService.swift */; };
 		1AA1D9631E98AC8E00CC9A60 /* QuorumMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA1D9621E98AC8E00CC9A60 /* QuorumMembersViewController.swift */; };
 		1AA8810D1E99778A00735299 /* QuorumMemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA8810C1E99778A00735299 /* QuorumMemberTableViewCell.swift */; };
@@ -72,6 +74,8 @@
 		1A4417441E7DC4DD007789B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A44174A1E7DD8B4007789B9 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		1A44174C1E7DDC22007789B9 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		1A7A2E211F284FED0079307D /* Quorum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quorum.swift; sourceTree = "<group>"; };
+		1A7A2E231F2862BC0079307D /* PickerButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerButton.swift; sourceTree = "<group>"; };
 		1A91B0771E88AE540069A376 /* HttpService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpService.swift; sourceTree = "<group>"; };
 		1AA1D9621E98AC8E00CC9A60 /* QuorumMembersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuorumMembersViewController.swift; sourceTree = "<group>"; };
 		1AA8810C1E99778A00735299 /* QuorumMemberTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuorumMemberTableViewCell.swift; sourceTree = "<group>"; };
@@ -121,6 +125,7 @@
 				1AD5EB511E8C4D7B007E7693 /* Household.swift */,
 				1ACC4CB01E90F2CE006400EB /* Report.swift */,
 				1AD5BE441EA08B4B007506F1 /* PaginatedList.swift */,
+				1A7A2E211F284FED0079307D /* Quorum.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -188,6 +193,7 @@
 			children = (
 				1ACC4CAE1E90B34D006400EB /* AssignmentCollectionViewCell.swift */,
 				1AA8810C1E99778A00735299 /* QuorumMemberTableViewCell.swift */,
+				1A7A2E231F2862BC0079307D /* PickerButton.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -316,6 +322,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A7A2E221F284FED0079307D /* Quorum.swift in Sources */,
 				1AA8810D1E99778A00735299 /* QuorumMemberTableViewCell.swift in Sources */,
 				1ABC9A881EA3367700148D3C /* RootViewController.swift in Sources */,
 				1ACC4CAC1E90AD51006400EB /* AssignmentsViewController.swift in Sources */,
@@ -336,6 +343,7 @@
 				1AD5EB501E8C21C9007E7693 /* QuorumMember.swift in Sources */,
 				1AD5576E1E9031A4005036E9 /* LoginViewController.swift in Sources */,
 				1A3D46B11E885FB6008FC178 /* User.swift in Sources */,
+				1A7A2E241F2862BC0079307D /* PickerButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,10 @@ import UIKit
 import PromiseKit
 
 class QuorumMembersViewController: BaseMenuViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+    enum MainViewState {
+        case quorumSelect
+        case quorumMemberSelect
+    }
     var quorumMembersMeta : PaginatedList<QuorumMember> = PaginatedList<QuorumMember>() {
         didSet {
             if self.quorumMembersMeta.data == nil {
@@ -19,21 +23,56 @@ class QuorumMembersViewController: BaseMenuViewController, UITableViewDataSource
             self.quorumMembers = self.allQuorumMembers
         }
     }
+    var quorums : [Quorum] = []
+    var selectedQuorum : Quorum? {
+        didSet {
+            pickerButton.setTitle(selectedQuorum?.name, for: .normal)
+            reset()
+            fetchQuorumMembers()
+        }
+    }
     var quorumMembers : [QuorumMember] = []
     var allQuorumMembers : [QuorumMember] = []
     var indexTitles : [String:Int]?
     let httpService : HttpService = HttpService.sharedInstance
     let userStore : UserStore = UserStore.sharedInstance
+    var viewState : MainViewState = .quorumSelect {
+        didSet {
+            handleViewStateChanged()
+        }
+    }
     
     @IBOutlet var tableView : UITableView!
     @IBOutlet var searchBar : UISearchBar!
-    
-    // TODO: Some day we will have to provide a quorum selector
+    @IBOutlet var instructionLabel : UILabel!
+    @IBOutlet var pickerButton : PickerButton!
+    var quorumPicker: UIPickerView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        fetchQuorumMembers()
+        
+        quorumPicker = UIPickerView()
+        quorumPicker.delegate = self
+        quorumPicker.dataSource = self
+        
+        let toolBar = UIToolbar()
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.isTranslucent = true
+        toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
+        toolBar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(QuorumMembersViewController.doneButtonPressed))
+        
+        toolBar.setItems([doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        
+        pickerButton.customInputView = quorumPicker
+        pickerButton.customInputAccessoryView = toolBar
+        
+//        tableView.isHidden = true
+//        searchBar.isHidden = true
+        
+        fetchQuorums()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,6 +90,23 @@ class QuorumMembersViewController: BaseMenuViewController, UITableViewDataSource
         
         // Show the navigation bar on other view controllers
         self.navigationItem.setHidesBackButton(false, animated: false)
+    }
+    
+    func handleViewStateChanged() {
+        switch self.viewState {
+        case .quorumMemberSelect:
+            self.pickerButton.isHidden = true
+            self.quorumPicker.isHidden = true
+            self.searchBar.isHidden = false
+            self.tableView.isHidden = false
+            self.instructionLabel.text = "Please find your name below so we can look up your assignments"
+        default:
+            self.pickerButton.isHidden = false
+            self.quorumPicker.isHidden = false
+            self.searchBar.isHidden = true
+            self.tableView.isHidden = true
+            self.instructionLabel.text = "Please select your quorum"
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -107,9 +163,16 @@ class QuorumMembersViewController: BaseMenuViewController, UITableViewDataSource
         }
     }
     
+    func reset() {
+        self.quorumMembersMeta = PaginatedList<QuorumMember>()
+        self.allQuorumMembers = []
+        self.quorumMembers = []
+    }
+    
     func fetchQuorumMembers(_ page : Int? = nil) {
+        guard let quorumId = selectedQuorum?.id else { return } // TODO: Error?
         firstly {
-            httpService.getQuorumMembers(quorumId: 1, page: (page ?? quorumMembersMeta.nextPage()))
+            httpService.getQuorumMembers(quorumId: quorumId, page: (page ?? quorumMembersMeta.nextPage()))
         }.then { [weak self] members -> Void in
             guard let wSelf = self else { return }
             wSelf.quorumMembersMeta = members
@@ -117,6 +180,17 @@ class QuorumMembersViewController: BaseMenuViewController, UITableViewDataSource
         }.catch { [weak self] error in
             guard let wSelf = self else { return }
             wSelf.presentAlert("Something went wrong trying to retrieve quorum members")
+        }
+    }
+    
+    func fetchQuorums() {
+        firstly {
+            httpService.getQuorums()
+        }.then { [unowned self] quorums -> Void in
+            self.quorums = quorums
+            self.quorumPicker.reloadAllComponents()
+        }.catch { [unowned self] error in
+            self.presentAlert("Something went wrong trying to retrieve quorum info")
         }
     }
     
@@ -130,5 +204,37 @@ class QuorumMembersViewController: BaseMenuViewController, UITableViewDataSource
         alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)
     }
+    
+    @IBAction func pickerButtonPressed() {
+        pickerButton.becomeFirstResponder()
+    }
+    
+    func doneButtonPressed() {
+        self.selectedQuorum = quorums[quorumPicker.selectedRow(inComponent: 0)]
+        self.pickerButton.resignFirstResponder()
+    }
+}
 
+extension QuorumMembersViewController : UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return quorums[row].name
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.selectedQuorum = quorums[row]
+    }
+}
+
+extension QuorumMembersViewController : UIPickerViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return quorums.count
+    }
 }

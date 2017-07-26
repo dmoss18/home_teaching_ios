@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IHt-UK-pV0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IHt-UK-pV0">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -141,8 +141,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="54" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vKR-R8-O7b">
-                                <rect key="frame" x="0.0" y="165" width="375" height="482"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s1W-C4-b0e" customClass="PickerButton" customModule="HomeTeaching" customModuleProvider="target">
+                                <rect key="frame" x="8" y="72" width="359" height="44"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="sxZ-V8-vjh"/>
+                                </constraints>
+                                <state key="normal" title="Click to select a quorum">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="pickerButtonPressed" destination="zMr-aI-3xQ" eventType="touchUpInside" id="ZVi-XR-8hh"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Please find your name below so we can look up your assignments" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKK-K8-0we">
+                                <rect key="frame" x="8" y="124" width="359" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <searchBar contentMode="redraw" placeholder="Search by name" translatesAutoresizingMaskIntoConstraints="NO" id="4Oc-GU-iEX">
+                                <rect key="frame" x="0.0" y="173" width="375" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="zMr-aI-3xQ" id="l5E-MM-fl0"/>
+                                </connections>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="54" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vKR-R8-O7b">
+                                <rect key="frame" x="0.0" y="217" width="375" height="430"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -175,35 +201,27 @@
                                     <outlet property="delegate" destination="zMr-aI-3xQ" id="q2z-Cx-nYh"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please find your name below so we can look up your assignments" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKK-K8-0we">
-                                <rect key="frame" x="16" y="72" width="359" height="41"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <searchBar contentMode="redraw" placeholder="Search by name" translatesAutoresizingMaskIntoConstraints="NO" id="4Oc-GU-iEX">
-                                <rect key="frame" x="0.0" y="121" width="375" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="zMr-aI-3xQ" id="l5E-MM-fl0"/>
-                                </connections>
-                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="4Oc-GU-iEX" firstAttribute="leading" secondItem="yGB-xZ-L8q" secondAttribute="leading" id="4Dj-9V-Kdl"/>
-                            <constraint firstItem="vKR-R8-O7b" firstAttribute="top" secondItem="4Oc-GU-iEX" secondAttribute="bottom" id="4d6-Yj-FQF"/>
-                            <constraint firstItem="fKK-K8-0we" firstAttribute="leading" secondItem="yGB-xZ-L8q" secondAttribute="leadingMargin" id="99W-za-khR"/>
-                            <constraint firstItem="4Oc-GU-iEX" firstAttribute="top" secondItem="fKK-K8-0we" secondAttribute="bottom" constant="8" id="AAY-tv-N9a"/>
-                            <constraint firstItem="vKR-R8-O7b" firstAttribute="leading" secondItem="yGB-xZ-L8q" secondAttribute="leading" id="BZi-yr-ta2"/>
-                            <constraint firstAttribute="trailing" secondItem="vKR-R8-O7b" secondAttribute="trailing" id="Jh6-VD-wW6"/>
-                            <constraint firstAttribute="trailing" secondItem="fKK-K8-0we" secondAttribute="trailing" id="X4E-Ev-2ny"/>
-                            <constraint firstAttribute="trailing" secondItem="4Oc-GU-iEX" secondAttribute="trailing" id="szM-ji-Ra7"/>
-                            <constraint firstItem="nig-Hi-FnM" firstAttribute="top" secondItem="vKR-R8-O7b" secondAttribute="bottom" id="wGj-u6-On6"/>
-                            <constraint firstItem="fKK-K8-0we" firstAttribute="top" secondItem="uj3-WW-Ssf" secondAttribute="bottom" constant="8" id="xkq-p8-TTS"/>
+                            <constraint firstItem="fKK-K8-0we" firstAttribute="top" secondItem="s1W-C4-b0e" secondAttribute="bottom" constant="8" id="2Ye-Zf-Uyx"/>
+                            <constraint firstItem="s1W-C4-b0e" firstAttribute="top" secondItem="uj3-WW-Ssf" secondAttribute="bottom" constant="8" id="5dc-Sj-VyI"/>
+                            <constraint firstItem="fKK-K8-0we" firstAttribute="leading" secondItem="yGB-xZ-L8q" secondAttribute="leading" constant="8" id="8V4-mG-LNy"/>
+                            <constraint firstItem="s1W-C4-b0e" firstAttribute="leading" secondItem="yGB-xZ-L8q" secondAttribute="leading" constant="8" id="9MB-Bu-fgN"/>
+                            <constraint firstAttribute="trailing" secondItem="s1W-C4-b0e" secondAttribute="trailing" constant="8" id="G0s-yg-wA1"/>
+                            <constraint firstItem="nig-Hi-FnM" firstAttribute="top" secondItem="vKR-R8-O7b" secondAttribute="bottom" id="LAG-XH-hVC"/>
+                            <constraint firstAttribute="trailing" secondItem="vKR-R8-O7b" secondAttribute="trailing" id="MU0-mO-8Fi"/>
+                            <constraint firstItem="4Oc-GU-iEX" firstAttribute="top" secondItem="fKK-K8-0we" secondAttribute="bottom" constant="8" id="QL9-oh-7I7"/>
+                            <constraint firstItem="vKR-R8-O7b" firstAttribute="top" secondItem="4Oc-GU-iEX" secondAttribute="bottom" id="XRf-qE-s8R"/>
+                            <constraint firstItem="4Oc-GU-iEX" firstAttribute="leading" secondItem="yGB-xZ-L8q" secondAttribute="leading" id="YOr-i7-v05"/>
+                            <constraint firstAttribute="trailing" secondItem="fKK-K8-0we" secondAttribute="trailing" constant="8" id="bXl-Qi-LdS"/>
+                            <constraint firstItem="vKR-R8-O7b" firstAttribute="leading" secondItem="yGB-xZ-L8q" secondAttribute="leading" id="cFP-vO-En8"/>
+                            <constraint firstAttribute="trailing" secondItem="4Oc-GU-iEX" secondAttribute="trailing" id="wcY-2c-BsB"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="instructionLabel" destination="fKK-K8-0we" id="U1e-La-Bkx"/>
+                        <outlet property="pickerButton" destination="s1W-C4-b0e" id="XOh-k3-AsE"/>
                         <outlet property="searchBar" destination="4Oc-GU-iEX" id="9LY-QA-Ayn"/>
                         <outlet property="tableView" destination="vKR-R8-O7b" id="2Rx-Gr-Y6Q"/>
                     </connections>
