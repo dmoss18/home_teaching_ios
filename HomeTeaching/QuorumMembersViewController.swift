@@ -14,6 +14,7 @@ class QuorumMembersViewController: BaseMenuViewController, UITableViewDataSource
         case quorumSelect
         case quorumMemberSelect
     }
+    
     var quorumMembersMeta : PaginatedList<QuorumMember> = PaginatedList<QuorumMember>() {
         didSet {
             if self.quorumMembersMeta.data == nil {
@@ -26,6 +27,9 @@ class QuorumMembersViewController: BaseMenuViewController, UITableViewDataSource
     var quorums : [Quorum] = []
     var selectedQuorum : Quorum? {
         didSet {
+            searchBar.isHidden = selectedQuorum == nil
+            tableView.isHidden = selectedQuorum == nil
+            instructionLabel.isHidden = selectedQuorum == nil
             pickerButton.setTitle(selectedQuorum?.name, for: .normal)
             reset()
             fetchQuorumMembers()
@@ -69,8 +73,9 @@ class QuorumMembersViewController: BaseMenuViewController, UITableViewDataSource
         pickerButton.customInputView = quorumPicker
         pickerButton.customInputAccessoryView = toolBar
         
-//        tableView.isHidden = true
-//        searchBar.isHidden = true
+        tableView.isHidden = true
+        searchBar.isHidden = true
+        instructionLabel.isHidden = selectedQuorum == nil
         
         fetchQuorums()
     }
@@ -145,6 +150,11 @@ class QuorumMembersViewController: BaseMenuViewController, UITableViewDataSource
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard let quorum = selectedQuorum else {
+            presentAlert("Please select a quorum first")
+            return
+        }
+        
         if searchText.isEmpty {
             self.quorumMembers = allQuorumMembers
             self.tableView.reloadData()
